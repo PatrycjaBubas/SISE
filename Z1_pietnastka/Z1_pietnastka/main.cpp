@@ -123,25 +123,24 @@ int _tmain(int argc, char* argv[])
 
 	cout << "\nPrzeszukiwanie: " << przeszukiwanie << endl;
 
-	strategia[0] = *argv[2];
-	strategia[1] = *argv[3];
-	strategia[2] = *argv[4];
-	strategia[3] = *argv[5];
-
-	cout << "\nStrategia: ";
-
 	for (int i = 0; i < 4; i++)
 	{
-		cout<<strategia[i]<<" ";
+		strategia[i] = argv[2][i*2];
 	}
 
+	cout << "\nStrategia: ";
+	for (int i = 0; i < 4; i++)
+	{
+		cout<<strategia[i];
+	}
+		
 
 	cout << "\n\nPodaj w jaki sposob chcesz wczytac poczatkowy uklad planszy. Wcisnij:"
 		"\n1 - jesli chcesz wczytac z pliku"
 		"\n2 - jesli chcesz podac ja w konsoli" << endl;
 	cout << "\nTwoj wybor: ";
 	cin >> wybor;
-	
+
 
 	switch (wybor)
 	{
@@ -246,3 +245,24 @@ int _tmain(int argc, char* argv[])
 	system("pause");
 	return 0;
 }
+
+
+/*
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+void WypiszArgumentyWierszaPolecen (int argc, char *argv[]);
+
+int main (int argc, char *argv[]) {
+WypiszArgumentyWierszaPolecen(argc, argv);
+getch();
+}
+
+void WypiszArgumentyWierszaPolecen (int argc, char *argv[]) {
+cout << "Liczba argumentow w wierszu polecen: " << argc << endl;
+for(int i=0; i<argc; ++i)
+cout << "Element numer " << i << " wiersza polecen ma wartosc: "
+<< argv[i] << endl;
+}
+*/
