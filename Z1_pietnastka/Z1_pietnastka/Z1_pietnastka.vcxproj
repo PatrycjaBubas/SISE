@@ -79,6 +79,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Agwiazdka.h" />
     <ClInclude Include="BFS.h" />
     <ClInclude Include="DFS.h" />
     <ClInclude Include="pietnastka.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Agwiazdka.cpp" />
     <ClCompile Include="BFS.cpp" />
     <ClCompile Include="DFS.cpp" />
     <ClCompile Include="pietnastka.cpp" />
