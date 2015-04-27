@@ -119,7 +119,7 @@ void tasujPlansze(vector<int> wierzcholek, int n, int m)
 	//generujemy IL plikow
 	for (int licznik = 0, s = 0; licznik < IL;s++)
 	{
-		//s = rand() % 4;
+		s = rand() % 4;
 		strategia = s_tab[s];
 
 		cout << "\nstrategia: " << strategia << endl;
@@ -143,7 +143,7 @@ void tasujPlansze(vector<int> wierzcholek, int n, int m)
 			ss << licznik;
 			string str = ss.str();
 
-			nazwa = "../../Zad1_pietnastka/Zad1_pietnastka/" + str + ".txt"; //polaczenie stringow
+			nazwa = "../../Z1_pietnastka/Z1_pietnastka/" + str + ".txt"; //polaczenie stringow
 			
 			if (otworz_do_zapisu(plik_wy, nazwa) == false) cout << endl;//sprawdzenie czy plik otworzyl sie poprawnie
 			zapisz(plik_wy, nowyStan, n, m);//zapis do pliku
@@ -166,7 +166,7 @@ void tasujPlansze(vector<int> wierzcholek, int n, int m)
 			ss << licznik;
 			string str = ss.str();
 
-			nazwa = "../../Zad1_pietnastka/Zad1_pietnastka/" + str + ".txt";
+			nazwa = "../../Z1_pietnastka/Z1_pietnastka/" + str + ".txt";
 
 			if (otworz_do_zapisu(plik_wy, nazwa) == false) cout << endl;
 			zapisz(plik_wy, nowyStan, n, m);
@@ -187,7 +187,7 @@ void tasujPlansze(vector<int> wierzcholek, int n, int m)
 			ss << licznik;
 			string str = ss.str();
 
-			nazwa = "../../Zad1_pietnastka/Zad1_pietnastka/" + str + ".txt";
+			nazwa = "../../Z1_pietnastka/Z1_pietnastka/" + str + ".txt";
 
 			if (otworz_do_zapisu(plik_wy, nazwa) == false) cout << endl;
 			zapisz(plik_wy, nowyStan, n, m);
@@ -208,7 +208,7 @@ void tasujPlansze(vector<int> wierzcholek, int n, int m)
 			ss << licznik;
 			string str = ss.str();
 
-			nazwa = "../../Zad1_pietnastka/Zad1_pietnastka/" + str + ".txt";
+			nazwa = "../../Z1_pietnastka/Z1_pietnastka/" + str + ".txt";
 
 			if (otworz_do_zapisu(plik_wy, nazwa) == false) cout << endl;
 			zapisz(plik_wy, nowyStan, n, m);
