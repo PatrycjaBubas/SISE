@@ -99,10 +99,39 @@ void uloz_plansze(vector<int> lista_we)
 
 int _tmain(int argc, char* argv[])
 {
+	//strumien wejsciowy
+	ifstream plik_we;
+	
 	//lista wszystkich liczb w pliku/strumieniu
 	vector<int> lista_pol;
+	
 	//pierwszy wierzcholek grafu
 	vector<int> pierwszy_wierzcholek;
+
+	//strategia przeszukiwania
+	char* strategia = new char[5];
+
+	//algorytm przeszukiwania
+	char przeszukiwanie;
+
+	przeszukiwanie = *argv[1];
+
+	cout << "\nPrzeszukiwanie: " << przeszukiwanie << endl;
+
+	strategia[0] = *argv[2];
+	strategia[1] = *argv[3];
+	strategia[2] = *argv[4];
+	strategia[3] = *argv[5];
+
+	cout << "\nStrategia:" << endl;
+
+	for (int i = 0; i < 4; i++)
+	{
+		cout<<strategia[i]<<endl;
+	}
+
+
+	cout << endl;
 
 
 	system("pause");

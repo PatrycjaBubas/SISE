@@ -26,6 +26,7 @@ int _tmain()
 	
 	//strumien wejsciowy
 	ifstream plik_we;
+	
 	//lista wszystkich liczb w pliku
 	vector<int> lista_pol;
 	//pierwszy wierzcholek
@@ -33,6 +34,7 @@ int _tmain()
 	//strategia przeszukiwania
 	char* strategia = new char[5];
 	char* przeszukiwanie = new char[2];
+	
 	//odczyt pliku
 	if (otworz_do_odczytu(plik_we, "dane.txt") == false) return 0;
 	lista_pol = odczytaj(plik_we);
