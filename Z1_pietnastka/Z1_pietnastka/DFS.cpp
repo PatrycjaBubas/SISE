@@ -31,6 +31,8 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 				vector<int>::iterator it2 = it1;
 				advance(it2, -1);
 				swap(*it1, *it2);
+				this->ruchy.push_back('L');
+				this->iloscKrokow += 1;
 
 				if ((porownaj(nowyStan, this->ostatniStan)) == true)
 				{
@@ -43,15 +45,13 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 					cout << "\n \n Wejscie w L \n \n";
 					wyswietlPlansze(nowyStan);
 					this->listaStanow.push_back(nowyStan);
-
-					this->ruchy.push_back('L');
-					this->iloscKrokow += 1;
 					szukajDFS(sstrategia, nowyStan);
 					return;
 				}
 				else if (czyOdwiedzony(nowyStan) == true)
 				{
 					this->depth -= 1;
+					this->ruchy.push_back('-');
 				}
 			}
 			else if ((sstrategia.at(i) == 'P' || sstrategia.at(i) == 'p') && zero%m != (m - 1))
@@ -63,7 +63,8 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 				vector<int>::iterator it2 = it1;
 				advance(it2, +1);
 				swap(*it1, *it2);
-
+				this->ruchy.push_back('P');
+				this->iloscKrokow += 1;
 
 				if ((porownaj(nowyStan, this->ostatniStan)) == true)
 				{
@@ -76,14 +77,13 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 					cout << "\n \n Wejscie w P \n \n";
 					this->listaStanow.push_back(nowyStan);
 					wyswietlPlansze(nowyStan);
-					this->ruchy.push_back('P');
-					this->iloscKrokow += 1;
 					szukajDFS(sstrategia, nowyStan);
 					return;
 				}
 				else if (czyOdwiedzony(nowyStan) == true)
 				{
 					this->depth -= 1;
+					this->ruchy.push_back('-');
 				}
 			}
 			else if ((sstrategia.at(i) == 'G' || sstrategia.at(i) == 'g') && zero >= m)
@@ -95,6 +95,8 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 				vector<int>::iterator it2 = it1;
 				advance(it2, -m);
 				swap(*it1, *it2);
+				this->ruchy.push_back('G');
+				this->iloscKrokow += 1;
 
 				if ((porownaj(nowyStan, this->ostatniStan)) == true)
 				{
@@ -107,14 +109,13 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 					cout << "\n \n Wejscie w G \n \n";
 					this->listaStanow.push_back(nowyStan);
 					wyswietlPlansze(nowyStan);
-					this->ruchy.push_back('G');
-					this->iloscKrokow += 1;
 					szukajDFS(sstrategia, nowyStan);
 					return;
 				}
 				else if (czyOdwiedzony(nowyStan) == true)
 				{
 					this->depth -= 1;
+					this->ruchy.push_back('-');
 				}
 			}
 			else if ((sstrategia.at(i) == 'D' || sstrategia.at(i) == 'd') && zero < (n*m) - m)
@@ -126,6 +127,8 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 				vector<int>::iterator it2 = it1;
 				advance(it2, +m);
 				swap(*it1, *it2);
+				this->ruchy.push_back('D');
+				this->iloscKrokow += 1;
 
 				if ((porownaj(nowyStan, this->ostatniStan)) == true)
 				{
@@ -138,14 +141,13 @@ void DFS::szukajDFS(vector<char> sstrategia, vector<int> wierzcholek)
 					cout << "\n \n Wejscie w D \n \n";
 					this->listaStanow.push_back(nowyStan);
 					wyswietlPlansze(nowyStan);
-					this->ruchy.push_back('D');
-					this->iloscKrokow += 1;
 					szukajDFS(sstrategia, nowyStan);
 					return;
 				}
 				else if (czyOdwiedzony(nowyStan) == true)
 				{
 					this->depth -= 1;
+					this->ruchy.push_back('-');
 				}
 			}
 

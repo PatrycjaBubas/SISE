@@ -15,9 +15,6 @@
 
 using namespace std;
 
-int wiersze, kolumny = 0;
-
-
 bool otworz_do_odczytu(ifstream &plik, char nazwa_pliku[])
 {
 	plik.open(nazwa_pliku, ios_base::in);
@@ -50,10 +47,9 @@ void uloz_plansze(vector<int> lista_we)
 		//iterator listy wejsciowej
 		vector<int>::iterator iter_we = lista_we.begin();
 		//pierwsze dwa elementy listy sa jej rozmiarem. n=ilosc wierszy, m= ilosc kolumn
-		wiersze = *iter_we;
-		iter_we++;
-		kolumny = *iter_we;
-		iter_we++;
+		wiersze = lista_we.at(0);
+		kolumny = lista_we.at(1);
+
 
 		//utworzenie tablicy dwuwymiarowej odpowiadajacej za wyglad planszy
 		int** plansza = new int*[wiersze];
@@ -64,16 +60,18 @@ void uloz_plansze(vector<int> lista_we)
 
 		//przypisanie pol planszy
 		//utworzenie planszy w odpowiednim ksztalcie
+		lista_we.erase(lista_we.begin(), lista_we.begin() + 2);
+		iter_we = lista_we.begin();
 		for (int i = 0; i<wiersze; i++)
 		{
-			for (int j = 0; j<kolumny, iter_we != lista_we.end(); j++)
+			for (int j = 0; j<kolumny; j++)
 			{
 				plansza[i][j] = *iter_we;
 				iter_we++;
 			}
 		}
 
-		cout << "\n Wczytano plansze \n";
+		cout << "\n Wczytano plansze: \n \n";
 
 		//wyswietlenie planszy
 		for (int i = 0; i<wiersze; i++)
@@ -92,10 +90,11 @@ void uloz_plansze(vector<int> lista_we)
 			cout << endl << endl << endl;
 		}
 		//zwolnienie pamieci
-		for (int x = 0; x<wiersze; x++)
+		for (int w = 0; w < wiersze; w++)
 		{
-			delete[] plansza;
+			delete[] plansza[w];
 		}
+		delete[] plansza;
 	}
 	return;
 }
@@ -104,10 +103,10 @@ int _tmain(int argc, char* argv[])
 {
 	//strumien wejsciowy
 	ifstream plik_we;
-	
+
 	//lista wszystkich liczb w pliku/strumieniu
 	vector<int> lista_pol;
-	
+
 	//pierwszy wierzcholek grafu
 	vector<int> pierwszy_wierzcholek;
 
@@ -116,7 +115,7 @@ int _tmain(int argc, char* argv[])
 
 	//algorytm przeszukiwania
 	char przeszukiwanie;
-
+	int wiersze, kolumny;
 	int wybor;
 
 	przeszukiwanie = *argv[1];
@@ -125,15 +124,15 @@ int _tmain(int argc, char* argv[])
 
 	for (int i = 0; i < 4; i++)
 	{
-		strategia[i] = argv[2][i*2];
+		strategia[i] = argv[2][i * 2];
 	}
 
 	cout << "\nStrategia: ";
 	for (int i = 0; i < 4; i++)
 	{
-		cout<<strategia[i];
+		cout << strategia[i];
 	}
-		
+
 
 	cout << "\n\nPodaj w jaki sposob chcesz wczytac poczatkowy uklad planszy. Wcisnij:"
 		"\n1 - jesli chcesz wczytac z pliku"
@@ -155,25 +154,19 @@ int _tmain(int argc, char* argv[])
 
 		break;
 	case 2:
-		int wymiary[2];
-		int w, k;
-
+		//odczyt z konsoli
 		cout << "\nPodaj wymiary tablicy:" << endl;
-		cin >> w >> k;
-		//cout << "W: " << w << " K: " << k << endl;
-
-		wiersze = w;
-		kolumny = k;
-
+		cin >> wiersze >> kolumny;
+		
+		cout << "\n Wiersze: " << wiersze << "\n Kolumny: " << kolumny << endl;
 		//utworzenie tablicy dwuwymiarowej odpowiadajacej za wyglad planszy
 		int** plansza = new int*[wiersze];
 		for (int i = 0; i < wiersze; ++i)
 		{
 			plansza[i] = new int[kolumny];
 		}
-
 		cout << "\nPodaj stan poczatkowy ukladanki:" << endl;
-
+		//wczytywanie pierwszego wierzcholka grafu z konsoli
 		for (int i = 0; i < wiersze; i++)
 		{
 			for (int j = 0; j < kolumny; j++)
@@ -182,35 +175,23 @@ int _tmain(int argc, char* argv[])
 			}
 		}
 
-		cout << "Wczytana plansza:" << endl;
+		//przekazanie wierzcholka do vectora
+		lista_pol.push_back(wiersze);
+		lista_pol.push_back(kolumny);
 		for (int i = 0; i < wiersze; i++)
 		{
 			for (int j = 0; j < kolumny; j++)
 			{
-				cout << plansza[i][j];
-			}
-			cout << endl;
-		}
-
-		for (int i = 0; i < wiersze; i++)
-		{
-			for (int j = 0; j < kolumny; j++)
-			{
-				lista_pol.push_back(plansza[i][j]);
+				int poleint = (int)plansza[i][j];
+				lista_pol.push_back(poleint);
 			}
 		}
 
-
-		cout << "Wczytany wektor:" << endl;
-		for (int i = 0; i < wiersze*kolumny; i++)
-		{
-			cout << lista_pol[i] <<endl;
-		}
+		cout << "Wczytano plansze: " << endl << endl;
+		uloz_plansze(lista_pol);
 
 		break;
 	}
-
-
 	lista_pol.erase(lista_pol.begin(), lista_pol.begin() + 2);
 
 
@@ -239,30 +220,9 @@ int _tmain(int argc, char* argv[])
 		cout << "Nie ma takiego przeszukiwania!" << endl;
 	}
 
-	
+
 	cout << endl;
 
 	system("pause");
 	return 0;
 }
-
-
-/*
-#include <iostream>
-#include <conio.h>
-using namespace std;
-
-void WypiszArgumentyWierszaPolecen (int argc, char *argv[]);
-
-int main (int argc, char *argv[]) {
-WypiszArgumentyWierszaPolecen(argc, argv);
-getch();
-}
-
-void WypiszArgumentyWierszaPolecen (int argc, char *argv[]) {
-cout << "Liczba argumentow w wierszu polecen: " << argc << endl;
-for(int i=0; i<argc; ++i)
-cout << "Element numer " << i << " wiersza polecen ma wartosc: "
-<< argv[i] << endl;
-}
-*/
