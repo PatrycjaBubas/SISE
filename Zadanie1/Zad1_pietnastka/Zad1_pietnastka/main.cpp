@@ -1,3 +1,6 @@
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+
 #include "BFS.h"
 #include "DFS.h"
 #include <iostream>
@@ -18,8 +21,9 @@ void stworzPierwszyWierzcholek(vector<int> wczytaneLiczby, vector<int> wyjsciowy
 
 
 
-int main()
+int _tmain()
 {
+	
 	//strumien wejsciowy
 	ifstream plik_we;
 	//lista wszystkich liczb w pliku
@@ -78,7 +82,7 @@ int main()
 	{
 		//obiekt DFS
 		vector<char> strategiaDFS;
-		for(int x=0; x<4; x++)
+		for (int x = 0; x<4; x++)
 		{
 			strategiaDFS.push_back(strategia[x]);
 		}

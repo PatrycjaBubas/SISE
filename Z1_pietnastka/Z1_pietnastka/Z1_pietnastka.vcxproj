@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BBE6C6C0-478C-4566-97C9-FCEB1FA15284}</ProjectGuid>
+    <ProjectGuid>{9159236D-3C5D-4224-AD65-59B7E81F5C1E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Generator</RootNamespace>
+    <RootNamespace>Z1_pietnastka</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,15 +76,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BFS.h" />
+    <ClInclude Include="DFS.h" />
+    <ClInclude Include="pietnastka.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="BFS.cpp" />
+    <ClCompile Include="DFS.cpp" />
+    <ClCompile Include="pietnastka.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
