@@ -23,7 +23,7 @@ void pietnastka::wyswietlPlansze(vector<int> wierzcholek)
 		plansza[i] = new int[tempM];
 	}
 
-	//utworzenie planszy w odpowiednim kszta³cie
+	//utworzenie planszy w odpowiednim ksztalcie
 	for (int i = 0; i<n; i++)
 	{
 		for (int j = 0; j<m; j++)
@@ -111,7 +111,7 @@ int pietnastka::znajdzZero(vector<int> wierzcholek)
 	return 0;
 }
 
-//funkcja porownujaca dwie listy. zwraca true, jesli listy s¹ takie same
+//funkcja porownujaca dwie listy. zwraca true, jesli listy sa takie same
 bool pietnastka::porownaj(vector<int> list1, vector<int> list2)
 {
 	vector<int>::iterator iter1 = list1.begin();
@@ -128,6 +128,7 @@ bool pietnastka::porownaj(vector<int> list1, vector<int> list2)
 		}
 		return true;
 	}
+	else return false;
 }
 
 void pietnastka::wyswietlRuchy(vector<char> listaRuchow)

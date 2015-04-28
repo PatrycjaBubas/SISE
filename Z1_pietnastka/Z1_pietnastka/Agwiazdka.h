@@ -17,18 +17,16 @@ class Agwiazdka :
 	public pietnastka
 {
 
-protected:
-	vector<vector<int> > open;
-
-	int h;
-	int g;
-	int f;
-
 public:
 	Agwiazdka(int nn, int mm);
 	virtual ~Agwiazdka();
 
-	void szukajA(char* sstrategia, vector<int> wierzcholek);
-	int znajdzKoszt(vector<int> wierzcholek);
+	vector<vector<int> > listaOpen;
+
+	void szukajA(vector<int> wierzcholek);
+	int znajdzLiczbe(int liczba, vector<int> wierzcholek);
+	double znajdzKoszt(vector<int> wierzcholek);
+	bool czyWOpen(vector<int> wierzcholek);
+	int gdzieWOpen;
 };
 

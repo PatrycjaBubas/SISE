@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "BFS.h"
 #include "DFS.h"
+#include "Agwiazdka.h"
 #include <iostream>
 #include <cstdlib>
 #include <sstream>
@@ -14,6 +15,9 @@
 #include <conio.h>
 
 using namespace std;
+
+int wiersze;
+int kolumny;
 
 bool otworz_do_odczytu(ifstream &plik, char nazwa_pliku[])
 {
@@ -42,8 +46,6 @@ vector<int> odczytaj(ifstream &plik_we)
 void uloz_plansze(vector<int> lista_we)
 {
 	if (lista_we.size() > 2){
-		//rozmiar plnaszy NxM
-		int wiersze, kolumny;
 		//iterator listy wejsciowej
 		vector<int>::iterator iter_we = lista_we.begin();
 		//pierwsze dwa elementy listy sa jej rozmiarem. n=ilosc wierszy, m= ilosc kolumn
@@ -115,24 +117,23 @@ int _tmain(int argc, char* argv[])
 
 	//algorytm przeszukiwania
 	char przeszukiwanie;
-	int wiersze, kolumny;
 	int wybor;
 
 	przeszukiwanie = *argv[1];
 
 	cout << "\nPrzeszukiwanie: " << przeszukiwanie << endl;
+	if (argc == 3){
+		for (int i = 0; i < 4; i++)
+		{
+			strategia[i] = argv[2][i * 2];
+		}
 
-	for (int i = 0; i < 4; i++)
-	{
-		strategia[i] = argv[2][i * 2];
+		cout << "\nStrategia: ";
+		for (int i = 0; i < 4; i++)
+		{
+			cout << strategia[i];
+		}
 	}
-
-	cout << "\nStrategia: ";
-	for (int i = 0; i < 4; i++)
-	{
-		cout << strategia[i];
-	}
-
 
 	cout << "\n\nPodaj w jaki sposob chcesz wczytac poczatkowy uklad planszy. Wcisnij:"
 		"\n1 - jesli chcesz wczytac z pliku"
@@ -157,7 +158,6 @@ int _tmain(int argc, char* argv[])
 		//odczyt z konsoli
 		cout << "\nPodaj wymiary tablicy:" << endl;
 		cin >> wiersze >> kolumny;
-		
 		cout << "\n Wiersze: " << wiersze << "\n Kolumny: " << kolumny << endl;
 		//utworzenie tablicy dwuwymiarowej odpowiadajacej za wyglad planszy
 		int** plansza = new int*[wiersze];
@@ -187,9 +187,14 @@ int _tmain(int argc, char* argv[])
 			}
 		}
 
-		cout << "Wczytano plansze: " << endl << endl;
-		uloz_plansze(lista_pol);
 
+		cout << "Wczytany wektor:" << endl;
+		for (int i = 0; i < (wiersze*kolumny) + 2; i++)
+		{
+			cout << lista_pol.at(i);
+		}
+
+		uloz_plansze(lista_pol);
 		break;
 	}
 	lista_pol.erase(lista_pol.begin(), lista_pol.begin() + 2);
@@ -214,6 +219,12 @@ int _tmain(int argc, char* argv[])
 		DFS obiektDFS = DFS(wiersze, kolumny);
 		obiektDFS.stworzPoprawnyStan();
 		obiektDFS.szukajDFS(strategiaDFS, lista_pol);
+	}
+	else if (przeszukiwanie == 'a' || przeszukiwanie == 'A')
+	{
+		Agwiazdka obiektAgwiazdka = Agwiazdka(wiersze, kolumny);
+		obiektAgwiazdka.stworzPoprawnyStan();
+		obiektAgwiazdka.szukajA(lista_pol);
 	}
 	else
 	{

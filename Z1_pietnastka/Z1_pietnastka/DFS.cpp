@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "DFS.h"
 
-#define GLEBOKOSC 50
+#define GLEBOKOSC 100
 
 using namespace std;
 
