@@ -79,9 +79,7 @@ public class Program {
 				testIrisList.add(iris);
 			}
 
-		} catch (FileNotFoundException fnfE) {
-			System.out.println(fnfE);
-		}
+		//O TO TU ;P
 
 		for(Iris iris : testIrisList) {
 			
@@ -152,9 +150,12 @@ public class Program {
 			}
 			
 			if((counterSetosa>counterVersicolor) && (counterSetosa>counterVirginica)){
-				iris.
+				
 			}
 
+		}
+		} catch (FileNotFoundException fnfE) {
+			System.out.println(fnfE);
 		}
 
 	}
