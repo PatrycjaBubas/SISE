@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import Model.Iris;
 
@@ -57,10 +56,10 @@ public class IrisLoad {
     public void write(List<Iris> endList, String outFilePath){
     	File file = new File(outFilePath);
     	
-    	try(FileOutputStream fileOut = new FileOutputStream(outFilePath);
-		    	ObjectOutputStream out = new ObjectOutputStream(fileOut)){
+    	try(FileWriter out = new FileWriter(file)){
     		file.createNewFile();
-            out.writeObject(endList);
+            out.write(endList);
+            out.close();
     	}catch (FileNotFoundException ex) {
 			System.out.println("Plik nie istnieje");
 		} catch (IOException io) {
