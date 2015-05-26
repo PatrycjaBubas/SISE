@@ -102,7 +102,7 @@ public class Program {
 					counterVersicolor = 0;
 					counterVirginica = 0;
 					for (int i = 0; i < k; i++) {
-						String type = learnedIrises.get(i).getOldIris()
+						type = learnedIrises.get(i).getOldIris()
 								.getType();
 						switch (type) {
 						case "Iris-setosa":

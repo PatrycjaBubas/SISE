@@ -1,10 +1,15 @@
 package BusinessLogic;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import Model.Iris;
 
@@ -47,6 +52,22 @@ public class IrisLoad {
            // System.out.println(newIris.toString());
         }
         testReader.close();
+    }
+    
+    public void write(List<Iris> endList, String outFilePath){
+    	File file = new File(outFilePath);
+    	
+    	try(FileOutputStream fileOut = new FileOutputStream(outFilePath);
+		    	ObjectOutputStream out = new ObjectOutputStream(fileOut)){
+    		file.createNewFile();
+            out.writeObject(endList);
+    	}catch (FileNotFoundException ex) {
+			System.out.println("Plik nie istnieje");
+		} catch (IOException io) {
+			System.out.println("Wyj¹tek I/O ");
+		} catch (Exception se) {
+			System.out.println("B³¹d sec ");
+		}
     }
 
 	public List<Iris> getLearnList() {
