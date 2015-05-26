@@ -6,6 +6,13 @@ public class LearnedIris implements Comparable<LearnedIris> {
 	private Iris oldIris;
 	private float distance;
 
+	public LearnedIris(Iris newIris, Iris oldIris, float distance) {
+		super();
+		this.newIris = newIris;
+		this.oldIris = oldIris;
+		this.distance = distance;
+	}
+
 	public Iris getNewIris() {
 		return newIris;
 	}

@@ -74,97 +74,34 @@ public class Program {
 			// za³adowanie plików wejœciowych i wczytanie ich jako obiekty Iris
 			// do list learnList i testList
 			loader.read(fileIn, fileTest);
+
 			for (Iris iris : loader.getLearnList()) {
 				knownIrisList.add(iris);
 			}
 			for (Iris iris : loader.getQualifyList()) {
 				testIrisList.add(iris);
 			}
-
-			for (Iris iris : testIrisList) {
-
-				boolean conflict = true;
-				int counterSetosa = 0;
-				int counterVersicolor = 0;
-				int counterVirginica = 0;
-
-				for (Iris oldIris : knownIrisList) {
-					LearnedIris newLearnedIris = new LearnedIris();
-					newLearnedIris.setNewIris(iris);
-					newLearnedIris.setOldIris(oldIris);
-					newLearnedIris.setDistance(getDistance(oldIris, iris, m));
-					learnedIrises.add(newLearnedIris);
+			for (Iris testIris : testIrisList) {
+				for (Iris knownIris : knownIrisList) {
+					learnedIrises.add(new LearnedIris(testIris, knownIris,
+							getDistance(testIris, knownIris, m)));
 				}
-				Collections.sort(learnedIrises);
-
-				while (conflict != false) {
-					counterSetosa = 0;
-					counterVersicolor = 0;
-					counterVirginica = 0;
-					for (int i = 0; i < k; i++) {
-						type = learnedIrises.get(i).getOldIris()
-								.getType();
-						switch (type) {
-						case "Iris-setosa":
-							counterSetosa++;
-							break;
-						case "Iris-versicolor":
-							counterVersicolor++;
-							break;
-						case "Iris-virginica":
-							counterVirginica++;
-							break;
-						}
-					}
-					// sprawdzenie, czy nie nastal konflikt
-					if ((counterSetosa == counterVersicolor && counterSetosa != 0)
-							|| (counterSetosa == counterVirginica && counterSetosa != 0)
-							|| (counterVersicolor == counterVirginica && counterVersicolor != 0)) {
-						// zastosowanie standaryzacji (od kazdego argumentu
-						// odjac
-						// sredni¹ i podzielic przez odchylenie
-						conflict = true;
-						float mean = 0;
-						float s = 0;
-						for (int i = 0; i < k; i++) {
-							mean += learnedIrises.get(i).getDistance();
-						}
-						mean /= k;
-						// odchylenie
-						for (int i = 0; i < k; i++) {
-							s += Math.pow(learnedIrises.get(i).getDistance()
-									- mean, 2);
-						}
-						s /= k - 1;
-						if (s == 0) {
-							s = 0.0001f;
-						}
-						for (int i = 0; i < k; i++) {
-							float d = learnedIrises.get(i).getDistance();
-							learnedIrises.get(i).setDistance((d - mean) / s);
-						}
-						Collections.sort(learnedIrises);
-					} else {
-						conflict = false;
-						break;
-					}
-				}
-
-				if ((counterSetosa > counterVersicolor)
-						&& (counterSetosa > counterVirginica)) {
-					type = "Iris-setosa";
-				} else if ((counterVersicolor > counterSetosa)
-						&& (counterVersicolor > counterVirginica)) {
-					type = "Iris-versicolor";
-				} else if ((counterVirginica > counterSetosa)
-						&& (counterVirginica > counterVersicolor)) {
-					type = "Iris-virginica";
-				}
-				classifiedIris.put(iris, type);
 			}
 		} catch (FileNotFoundException fnfE) {
 			System.out.println(fnfE);
 		}
+
+		List<Integer> typesToWrite = new ArrayList<Integer>();
+		for (String irisType : classifiedIris.values()) {
+			if (irisType.equals("Iris-setosa")) {
+				typesToWrite.add(0);
+			} else if (irisType.equals("Iris-versicolor")) {
+				typesToWrite.add(1);
+			} else if (irisType.equals("Iris-virginica")) {
+				typesToWrite.add(2);
+			}
+		}
+		loader.write(typesToWrite, "NewOut.txt");
 
 	}
 
@@ -212,6 +149,10 @@ public class Program {
 			finalDistance = sepalPetalDistance + petalWidthDistance;
 		}
 		return finalDistance;
+	}
+
+	public static void standarizeDistances(List<LearnedIris> learnedIrises) {
+
 	}
 
 }
