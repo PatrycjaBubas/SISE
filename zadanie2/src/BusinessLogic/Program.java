@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import Model.Iris;
 import Model.LearnedIris;
 
@@ -153,6 +155,22 @@ public class Program {
 
 	public static void standarizeDistances(List<LearnedIris> learnedIrises) {
 
+	}
+	
+	public void MSE(Map<Iris, String> classifiedIris){
+		Integer elem1 = null, elem2 = null, dif = null, mse = null, sum = 0, N = 0;
+		Iterator iterator = (Iterator) classifiedIris.keySet().iterator();
+		for(Iris elemKey : classifiedIris.keySet()) {
+//		    Iris elemValue = classifiedIris.get(elemKey);
+		    if(elemKey.getType().equals(classifiedIris.get(elemKey)) == false){
+		    	elem1 = Integer.valueOf(elemKey.getType());
+		    	elem2 = Integer.valueOf(classifiedIris.get(elemKey));
+		    	dif = elem1 - elem2;
+		    	sum = sum + dif*dif;
+		    	mse=sum/3;
+		    	System.out.println("B³¹d œredniokwadratowy nauki:" + mse);
+		    }
+		}
 	}
 
 }
